@@ -1,14 +1,12 @@
 import React from 'react';
-import './ProjectHeroStyle.css'; // Import your CSS styles
-import ProjectImg from '../assets/ProjectHeroImg.jpeg'; // Import your project image
-import projectsData from "../json/projects.json"; // Import your projects data
+import './ProjectHeroStyle.css'; 
+import ProjectImg from '../assets/ProjectHeroImg.jpeg';
+import projectsData from "../json/projects.json"; 
 
-// Import all images statically
 import gameImg from '../assets/game.jpg';
 import wordleCloneImg from '../assets/wordle-clone.jpg';
 import fyleProjectImg from '../assets/fyle-project.jpg';
 
-// Map image file names to imported images
 const images = {
   'game.jpg': gameImg,
   'wordle-clone.jpg': wordleCloneImg,

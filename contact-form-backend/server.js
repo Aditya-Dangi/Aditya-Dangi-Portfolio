@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -12,9 +13,12 @@ app.use(cors());
 
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;
-mongoose.connect(dbURI)
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
+
+// Serve static files from the React frontend build folder
+app.use(express.static(path.join(__dirname, '../contact-form-frontend/build')));
 
 // Contact schema
 const contactSchema = new mongoose.Schema({
@@ -26,7 +30,7 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-// Routes
+// API route for saving contact form data
 app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
   try {
@@ -36,6 +40,11 @@ app.post('/api/contact', async (req, res) => {
   } catch (error) {
     res.status(400).send('Error saving contact');
   }
+});
+
+// Default route handler for all other GET requests
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../contact-form-frontend/build', 'index.html'));
 });
 
 // Start the server

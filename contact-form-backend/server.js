@@ -13,9 +13,12 @@ app.use(cors());
 
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;
-mongoose.connect(dbURI)
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Serve static files from the React frontend build folder
 app.use(express.static(path.join(__dirname, '../frontend/build')));
@@ -38,6 +41,7 @@ app.post('/api/contact', async (req, res) => {
     await newContact.save();
     res.status(201).send('Contact saved');
   } catch (error) {
+    console.error('Error saving contact:', error);
     res.status(400).send('Error saving contact');
   }
 });
@@ -46,6 +50,7 @@ app.post('/api/contact', async (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

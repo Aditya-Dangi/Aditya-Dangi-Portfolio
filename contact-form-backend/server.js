@@ -18,7 +18,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.log(err));
 
 // Serve static files from the React frontend build folder
-app.use(express.static(path.join(__dirname, '../contact-form-frontend/build')));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 // Contact schema
 const contactSchema = new mongoose.Schema({
@@ -44,7 +44,7 @@ app.post('/api/contact', async (req, res) => {
 
 // Default route handler for all other GET requests
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../contact-form-frontend/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
 // Start the server

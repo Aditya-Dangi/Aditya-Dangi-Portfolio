@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Interactive Games",
+    "description": "Frontend project featuring flex card animations and three interactive games: Hangman, Bubble Game, and Stone Paper Scissors.",
+    "image": "game.jpg",
+    "demoLink": "https://aditya-dangi.github.io/Games/",
+    "codeLink": "https://github.com/aditya-dangi/Games"
+  },
+  {
+    "title": "Wordle Clone",
+    "description": "Created a responsive Wordle clone with two additional features, leveraging modern JavaScript ES6+ for efficient and maintainable code.",
+    "image": "wordle-clone.jpg",
+    "demoLink": "https://aditya-dangi.github.io/Wordle-Clone/",
+    "codeLink": "https://github.com/aditya-dangi/Wordle-Clone"
+  },
+  {
+    "title": "Fyle Project",
+    "description": "Dynamic navigation menu project using HTML5, CSS, JavaScript, jQuery, and Bootstrap. Integrated Swiper.js for carousel functionality.",
+    "image": "fyle-project.jpg",
+    "demoLink": "https://fyle-assignment-project.netlify.app",
+    "codeLink": "https://github.com/Aditya-Dangi/Fyle-Assignment-Project"
+  }
+]

@@ -1,0 +1,171 @@
+.main-div{
+  height: 100vh;
+  padding-top: 10vh;
+}
+.main-content{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.hero-img-2{
+  width: 30vw;
+  margin: 10vw;
+}
+@media screen and (max-width: 500px) {
+  .main-content{
+    flex-direction: column;
+  }
+  .hero-img-2{
+    width: 90vw;
+  }
+}
+.into-img{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -100;
+  opacity: .2;
+}
+
+.heroimg-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 2.2em;
+  padding: 10vw;
+}
+.welcome-text{
+  font-size: 1em;
+}
+.span-context{
+  display: block;
+  font-size: 1em;
+}
+.span-text{
+  display: block;
+  font-size: 1.2em;
+  font-weight: 900;
+  font-family:Arial, Helvetica, sans-serif;
+}
+p{
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+button:hover{
+  scale: 1.1;
+}
+.btn2{
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  opacity: .7;
+  margin-top: 1em;
+  width: 200px;
+  height: 60px;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: .3s;
+  font-weight: 900;
+}
+.btn2:hover{
+  background-color: black;
+  color: white;
+  border: 2px double white;
+  opacity: 1;
+}
+.btn-flip {
+  opacity: 1;
+  outline: 0;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  letter-spacing: 1px;
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Open Sans';
+  text-transform: uppercase;
+}
+
+.btn-flip:hover:after {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+.btn-flip:hover:before {
+  opacity: 0;
+  transform: translateY(50%) rotateX(90deg);
+}
+
+.btn-flip:after {
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  color: #323237;
+  display: block;
+  transition: 0.5s; /* Use the transition speed you prefer */
+  position: absolute;
+  background: #adadaf;
+  content: attr(data-back);
+  transform: translateY(-50%) rotateX(90deg);
+}
+
+.btn-flip:before {
+  top: 0;
+  left: 0;
+  opacity: 1;
+  color: #adadaf;
+  display: block;
+  padding: 0 30px;
+  line-height: 40px;
+  transition: 0.5s; /* Use the transition speed you prefer */
+  position: relative;
+  background: #323237;
+  content: attr(data-front);
+  transform: translateY(0) rotateX(0);
+}
+
+@media screen and (min-width: 1240px){
+  .btn2{
+    width: 300px;
+    height: 75px;
+    font-size: 1em;
+  }
+}
+@media screen and (max-width: 1040px) {
+  .content{
+    font-size: .5em;
+  }
+  button{
+    width: 200px;
+    height: 40px;
+  }
+  .btn2{
+    font-size: 1em;
+    font-weight: 500;
+    width: 250px;
+  }
+  p{
+    font-size: 1em;
+    margin-bottom: 15px;
+  }
+  .span-text{
+    font-size: .7em;
+  }
+  .span-context{
+    font-size: .5em;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .content{
+    font-size: 1.5em;
+    transform: translateY(-20px);
+  }
+  .btn2{
+    font-size: .7em;
+  }
+}
+

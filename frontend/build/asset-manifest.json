@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9770c2ca.css",
+    "main.js": "/static/js/main.dbfe948c.js",
+    "static/media/fyle-project.jpg": "/static/media/fyle-project.562458c37984e0124e88.jpg",
+    "static/media/wordle-clone.jpg": "/static/media/wordle-clone.cd5c5b27dfc2428eeb29.jpg",
+    "static/media/hero2.jpg": "/static/media/hero2.ecd26936ac8cc66b7e2a.jpg",
+    "static/media/heroimg.jpeg": "/static/media/heroimg.365b6d85f34e548dc80f.jpeg",
+    "static/media/ProjectHeroImg.jpeg": "/static/media/ProjectHeroImg.99f3b3b9557a864fc641.jpeg",
+    "static/media/game.jpg": "/static/media/game.37fec3a81c2a16b126d5.jpg",
+    "static/media/contactme2.png": "/static/media/contactme2.3d630268dacb3f241b9a.png",
+    "static/media/about.png": "/static/media/about.aad2ae46555b0cf8b8bf.png",
+    "index.html": "/index.html",
+    "main.9770c2ca.css.map": "/static/css/main.9770c2ca.css.map",
+    "main.dbfe948c.js.map": "/static/js/main.dbfe948c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9770c2ca.css",
+    "static/js/main.dbfe948c.js"
+  ]
+}

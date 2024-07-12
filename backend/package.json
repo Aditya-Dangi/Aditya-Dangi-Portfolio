@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "cd ../frontend && npm install && npm run build",
-    "dev": "concurrently \"npm start\" \"cd ../frontend && npm start\""
+    "dev": "npx concurrently \"npm start\" \"cd ../frontend && npm start\""
   },
   "keywords": [],
   "author": "",

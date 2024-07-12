@@ -9,7 +9,12 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://aditya-dangi-portfolio.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
+}));
+
 
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;

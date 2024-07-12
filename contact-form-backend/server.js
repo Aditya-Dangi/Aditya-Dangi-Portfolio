@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
@@ -15,33 +15,28 @@ app.use(cors({
   credentials: true
 }));
 
-
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;
-mongoose.connect(dbURI)
-.then(() => console.log('MongoDB connected'))
+let db;
+
+// Connect to MongoDB
+MongoClient.connect(dbURI)
+.then(client => {
+  console.log('MongoDB connected');
+  db = client.db('Aditya1478'); // Replace with your database name
+})
 .catch(err => console.error('MongoDB connection error:', err));
 
 // Serve static files from the React frontend build folder
 const staticFilesPath = path.join(__dirname, '../frontend/build');
 app.use(express.static(staticFilesPath));
 
-// Contact schema and model
-const contactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  subject: String,
-  message: String
-});
-
-const Contact = mongoose.model('Contact', contactSchema);
-
 // API route for saving contact form data
 app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
   try {
-    const newContact = new Contact({ name, email, subject, message });
-    await newContact.save();
+    const newContact = { name, email, subject, message };
+    await db.collection('contacts').insertOne(newContact); // Insert into "contacts" collection
     res.status(201).send('Contact saved');
   } catch (error) {
     console.error('Error saving contact:', error);

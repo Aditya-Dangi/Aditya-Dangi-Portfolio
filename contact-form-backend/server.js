@@ -14,13 +14,14 @@ app.use(cors());
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;
 mongoose.connect(dbURI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Serve static files from the React frontend build folder
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+const staticFilesPath = path.join(__dirname, '../frontend/build');
+app.use(express.static(staticFilesPath));
 
-// Contact schema
+// Contact schema and model
 const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -45,7 +46,7 @@ app.post('/api/contact', async (req, res) => {
 
 // Default route handler for all other GET requests
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  res.sendFile(path.join(staticFilesPath, 'index.html'));
 });
 
 // Start the server

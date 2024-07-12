@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ContactMeStyle.css';
 import ContactMeImg from '../assets/contactme2.png';
-import axios from 'axios';
 
 const ContactMe = () => {
   const [formData, setFormData] = useState({
@@ -40,22 +39,34 @@ const ContactMe = () => {
   }, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/contact', formData);
-      if (response.status === 201) {
-        alert('The form has been submitted');
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      }
-    } catch (error) {
-      alert('There was an error submitting the form');
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:5000/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('The form has been submitted successfully');
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } else {
+      alert('There was a problem submitting the form');
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    alert('There was a problem submitting the form');
+  }
+};
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -118,7 +129,7 @@ const ContactMe = () => {
         </button>
       </form>
     </div>
-  )
+  );
 }
 
 export default ContactMe;

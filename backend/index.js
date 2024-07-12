@@ -27,6 +27,11 @@ async function connectToMongo() {
 
 connectToMongo();
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
+
 // POST endpoint for form submission
 app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;

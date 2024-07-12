@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './ContactMeStyle.css';
 import ContactMeImg from '../assets/contactme2.png';
 
 const ContactMe = () => {
+  const form = useRef();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,35 +41,29 @@ const ContactMe = () => {
     };
   }, []);
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch('http://localhost:5000/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      alert('The form has been submitted successfully');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } else {
-      alert('There was a problem submitting the form');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('There was a problem submitting the form');
-  }
-};
-
+    emailjs
+      .sendForm('service_eol8l8c', 'template_zkomtpi', form.current, {
+        publicKey: 'neps6bpCwdcJIx6Vc',
+      })
+      .then(
+        () => {
+          alert('The form has been submitted successfully');
+          setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          });
+        },
+        (error) => {
+          alert('Failed to send the form. Please try again later.');
+          console.log('FAILED...', error.text);
+        }
+      );
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +76,7 @@ const ContactMe = () => {
   return (
     <div className='form-container'>
       <img className='contactme-img' src={ContactMeImg} alt="Background" />
-      <form className='contact-form' onSubmit={handleSubmit}>
+      <form ref={form} className='contact-form' onSubmit={sendEmail}>
         <div className='input-div'>
           <label>Your Name</label>
           <input 

@@ -1,16 +1,8 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import ContactMe from '../components/ContactMe'
+import React from "react";
+import Portfolio from "../components/Portfolio";
 
 const Contact = () => {
-  return (
-    <div>
-      < Navbar />
-      <ContactMe/>
-      < Footer />
-    </div>
-  )
-}
+  return <Portfolio />;
+};
 
-export default Contact
+export default Contact;

@@ -1,16 +1,8 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import AboutContent from '../components/About/About'
+import React from "react";
+import Portfolio from "../components/Portfolio";
 
 const About = () => {
-  return (
-    <div>
-      < Navbar />
-      < AboutContent />
-      < Footer />
-    </div>
-  )
-}
+  return <Portfolio />;
+};
 
-export default About
+export default About;

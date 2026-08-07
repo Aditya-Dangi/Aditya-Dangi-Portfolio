@@ -1,9 +1,12 @@
 import React from "react";
-import "./index.css";
-import Home from "./routes/Home";
 import { Route, Routes } from "react-router-dom";
+import Home from "./routes/Home";
 import ScrollToTop from "./components/ScrollToTop";
 
+/**
+ * Every route renders the same single-page portfolio; the legacy paths are
+ * kept so existing links and bookmarks continue to resolve.
+ */
 function App() {
   return (
     <>

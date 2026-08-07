@@ -54,6 +54,7 @@ export const projects = [
     year: "2026",
     type: "Full-stack platform",
     stack: ["Spring Boot", "Angular", "PostgreSQL", "Docker", "Gemini AI"],
+    image: "ai-fraud-detection.jpg",
     description:
       "A full-stack fraud operations platform that combines rule-based detection with AI-assisted risk recommendations for administrative review teams.",
     outcomes: [
@@ -73,6 +74,7 @@ export const projects = [
     year: "2025",
     type: "Angular application",
     stack: ["Angular 15", "RxJS", "RapidAPI", "TypeScript"],
+    image: "fitness-exercises-app.jpg",
     description:
       "A responsive exercise discovery app with real-time search, category filtering, reusable components, and resilient API states.",
     outcomes: [
@@ -85,18 +87,6 @@ export const projects = [
         href: "https://github.com/Aditya-Dangi/Fitness-Web-App",
       },
     ],
-  },
-  {
-    title: "Smart India Hackathon Bus Tracking Frontend",
-    year: "2023",
-    type: "Hackathon product",
-    stack: ["Frontend Engineering", "Maps", "Product UX"],
-    description:
-      "Hackathon project focused on the frontend experience for a bus tracking application.",
-    outcomes: [
-      "Designed core user-facing flows for a real-time transportation use case under fast iteration constraints.",
-    ],
-    links: [],
   },
   {
     title: "Interactive Games",

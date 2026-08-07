@@ -23,7 +23,60 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>Aditya Singh Dangi | Software Engineer</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aditya Singh Dangi",
+        "jobTitle": "Software Engineer",
+        "email": "mailto:adityasinghdangi9899@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Delhi",
+          "addressCountry": "IN"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Newgen Software"
+        },
+        "sameAs": [
+          "https://github.com/Aditya-Dangi",
+          "https://www.linkedin.com/in/aditya-singh-dangi-1b38a2235"
+        ]
+      }
+    </script>
+    <script>
+      /*
+       * Resolve the theme before first paint so there is no flash of the
+       * wrong colour scheme. Mirrors src/lib/theme.js — keep the storage key
+       * and the resolution rule in sync with it.
+       */
+      (function () {
+        try {
+          var stored = window.localStorage.getItem("ad-portfolio-theme");
+          var preference =
+            stored === "light" || stored === "dark" || stored === "system"
+              ? stored
+              : "system";
+          var theme =
+            preference === "system"
+              ? window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark"
+              : preference;
+
+          document.documentElement.setAttribute("data-theme", theme);
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute("content", theme === "light" ? "#ffffff" : "#08090b");
+        } catch (error) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

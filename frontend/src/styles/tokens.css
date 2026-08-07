@@ -1,0 +1,288 @@
+/* =========================================================================
+   Design tokens
+   The single source of truth for colour, type, space, radius, elevation and
+   motion. Components never hard-code a raw value; they reference a token so
+   that themes, density and motion preferences stay consistent everywhere.
+   ========================================================================= */
+
+:root {
+  /* ---- Typography -------------------------------------------------- */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono",
+    Menlo, Consolas, monospace;
+
+  /* Fluid display sizes, static UI sizes. Clamp keeps large type readable
+     on small screens without a cascade of breakpoint overrides. */
+  --text-display: clamp(2.75rem, 1.6rem + 5.1vw, 5rem);
+  --text-h1: clamp(2.15rem, 1.35rem + 3.4vw, 3.5rem);
+  --text-h2: clamp(1.65rem, 1.25rem + 1.7vw, 2.25rem);
+  --text-h3: clamp(1.15rem, 1.03rem + 0.5vw, 1.375rem);
+  --text-lg: 1.125rem;
+  --text-md: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.8125rem;
+  --text-2xs: 0.75rem;
+
+  --leading-tight: 1.06;
+  --leading-snug: 1.25;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tighter: -0.035em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: -0.01em;
+  --tracking-wide: 0.08em;
+  --tracking-widest: 0.14em;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 680;
+  --weight-black: 800;
+
+  /* ---- Spacing (4px base) ------------------------------------------ */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Vertical rhythm between page sections, fluid across viewports. */
+  --section-y: clamp(4.5rem, 3rem + 7vw, 8rem);
+  --gutter: clamp(1.125rem, 0.6rem + 2vw, 2rem);
+
+  /* ---- Radii --------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 22px;
+  --radius-full: 999px;
+
+  /* ---- Icon sizing --------------------------------------------------- */
+  --icon-xs: 0.875rem;
+  --icon-sm: 1rem;
+  --icon-md: 1.125rem;
+  --icon-lg: 1.375rem;
+  --icon-xl: 1.75rem;
+
+  /* ---- Control heights ----------------------------------------------- */
+  --control-sm: 2rem;
+  --control-md: 2.375rem;
+  --control-lg: 2.75rem;
+
+  /* ---- Layout -------------------------------------------------------- */
+  --max-width: 1160px;
+  --max-width-prose: 68ch;
+  --header-h: 60px;
+  --rail-w: 232px;
+  --rail-w-collapsed: 68px;
+
+  /* ---- Motion -------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --duration-instant: 90ms;
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+  --duration-slow: 380ms;
+  --duration-slower: 620ms;
+
+  /* Multiplied into every animation so "reduce motion" is a single switch. */
+  --motion-scale: 1;
+
+  /* ---- Z-index scale -------------------------------------------------- */
+  --z-base: 1;
+  --z-sticky: 30;
+  --z-rail: 40;
+  --z-header: 50;
+  --z-drawer: 60;
+  --z-overlay: 70;
+  --z-dialog: 80;
+  --z-toast: 90;
+  --z-tooltip: 100;
+
+  color-scheme: dark;
+}
+
+/* =========================================================================
+   Dark theme (default) — layered surfaces rather than flat black.
+   Each surface step is a real, slightly lighter plane so cards read as
+   stacked material instead of outlined rectangles.
+   ========================================================================= */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-canvas: #08090b;
+  --bg-subtle: #0b0c0f;
+  --surface-1: #101114;
+  --surface-2: #16181c;
+  --surface-3: #1c1f24;
+  --surface-inset: #0a0b0d;
+  --surface-hover: rgba(255, 255, 255, 0.04);
+  --surface-active: rgba(255, 255, 255, 0.07);
+
+  --scrim: rgba(4, 5, 7, 0.62);
+  --glass: rgba(12, 13, 16, 0.72);
+
+  --text-primary: #f4f5f6;
+  --text-secondary: #a8afb9;
+  /* Chosen so tertiary text clears WCAG AA (4.5:1) on every dark surface,
+     including the lightest one (--surface-3): 4.88:1. */
+  --text-tertiary: #848c9a;
+  --text-inverted: #0a0b0d;
+  --text-on-accent: #ffffff;
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.17);
+
+  --accent: #7c86f5;
+  --accent-hover: #8f98ff;
+  --accent-active: #6b76ea;
+  --accent-soft: rgba(124, 134, 245, 0.14);
+  --accent-soft-hover: rgba(124, 134, 245, 0.22);
+  --accent-border: rgba(124, 134, 245, 0.32);
+  --accent-glow: rgba(124, 134, 245, 0.35);
+
+  --amber: #e5b567;
+  --amber-soft: rgba(229, 181, 103, 0.14);
+  --emerald: #4ec08a;
+  --emerald-soft: rgba(78, 192, 138, 0.14);
+  --rose: #f2789a;
+  --rose-soft: rgba(242, 120, 154, 0.14);
+
+  /* Solid neutral used for "primary contrast" buttons. */
+  --solid-bg: #f4f5f6;
+  --solid-bg-hover: #ffffff;
+  --solid-text: #0a0b0d;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px -6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 32px 80px -20px rgba(0, 0, 0, 0.8);
+  /* Inner top highlight that makes dark surfaces feel lit from above. */
+  --shadow-raised: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  --ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  --grid-line: rgba(255, 255, 255, 0.028);
+  --aurora-1: rgba(124, 134, 245, 0.18);
+  --aurora-2: rgba(229, 181, 103, 0.09);
+}
+
+/* =========================================================================
+   Light theme — warm-neutral paper, shadows carry the elevation.
+   ========================================================================= */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-canvas: #ffffff;
+  --bg-subtle: #fafafa;
+  --surface-1: #ffffff;
+  --surface-2: #f7f7f8;
+  --surface-3: #f1f1f4;
+  --surface-inset: #f6f6f7;
+  --surface-hover: rgba(9, 9, 11, 0.035);
+  --surface-active: rgba(9, 9, 11, 0.06);
+
+  --scrim: rgba(24, 24, 27, 0.35);
+  --glass: rgba(255, 255, 255, 0.78);
+
+  --text-primary: #0d0e11;
+  --text-secondary: #52555e;
+  /* AA on every light surface, down to --surface-3: 4.71:1. */
+  --text-tertiary: #676b78;
+  --text-inverted: #ffffff;
+  --text-on-accent: #ffffff;
+
+  --border-subtle: rgba(9, 9, 11, 0.06);
+  --border: rgba(9, 9, 11, 0.11);
+  --border-strong: rgba(9, 9, 11, 0.2);
+
+  --accent: #4f46e5;
+  --accent-hover: #443bd8;
+  --accent-active: #3a32c4;
+  --accent-soft: rgba(79, 70, 229, 0.08);
+  --accent-soft-hover: rgba(79, 70, 229, 0.13);
+  --accent-border: rgba(79, 70, 229, 0.26);
+  --accent-glow: rgba(79, 70, 229, 0.22);
+
+  --amber: #a16207;
+  --amber-soft: rgba(161, 98, 7, 0.1);
+  --emerald: #047857;
+  --emerald-soft: rgba(4, 120, 87, 0.1);
+  --rose: #be123c;
+  --rose-soft: rgba(190, 18, 60, 0.1);
+
+  --solid-bg: #101114;
+  --solid-bg-hover: #26282e;
+  --solid-text: #ffffff;
+
+  --shadow-xs: 0 1px 2px rgba(16, 17, 20, 0.06);
+  --shadow-sm: 0 1px 3px rgba(16, 17, 20, 0.08), 0 1px 2px rgba(16, 17, 20, 0.04);
+  --shadow-md: 0 6px 16px -4px rgba(16, 17, 20, 0.1), 0 2px 6px rgba(16, 17, 20, 0.05);
+  --shadow-lg: 0 18px 40px -12px rgba(16, 17, 20, 0.16), 0 4px 12px rgba(16, 17, 20, 0.05);
+  --shadow-xl: 0 28px 70px -18px rgba(16, 17, 20, 0.22);
+  --shadow-raised: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  --ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  --grid-line: rgba(9, 9, 11, 0.035);
+  --aurora-1: rgba(79, 70, 229, 0.1);
+  --aurora-2: rgba(161, 98, 7, 0.06);
+}
+
+/* =========================================================================
+   Reduced motion — one switch that neutralises the motion scale used by
+   every animation, plus a hard stop for anything long-running.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-scale: 0;
+    --duration-instant: 1ms;
+    --duration-fast: 1ms;
+    --duration-base: 1ms;
+    --duration-slow: 1ms;
+    --duration-slower: 1ms;
+  }
+}
+
+/* Forced-colors / high-contrast: let the OS own colour, keep structure. */
+@media (forced-colors: active) {
+  :root {
+    --border: CanvasText;
+    --border-subtle: CanvasText;
+    --border-strong: CanvasText;
+  }
+}
+
+/* Users who ask the OS for more contrast get firmer borders and text. */
+@media (prefers-contrast: more) {
+  [data-theme="dark"] {
+    --text-secondary: #c8ced6;
+    --text-tertiary: #9aa2ae;
+    --border: rgba(255, 255, 255, 0.24);
+    --border-subtle: rgba(255, 255, 255, 0.16);
+  }
+
+  [data-theme="light"] {
+    --text-secondary: #3a3d45;
+    --text-tertiary: #55585f;
+    --border: rgba(9, 9, 11, 0.28);
+    --border-subtle: rgba(9, 9, 11, 0.18);
+  }
+}

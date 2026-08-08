@@ -3,17 +3,18 @@
  *
  * Every claim below is traceable to `data/portfolio.js` (experience impact
  * bullets, project stacks, achievements) — nothing here is a generic
- * "expert in everything" placeholder. Ratings are capped at 4/5 ("Advanced")
- * to stay honest about a 1+ year, early-career profile; nothing is marked
- * "Expert".
+ * "expert in everything" placeholder. Ratings use a 1-10 scale representing
+ * practical, day-to-day comfort for a ~1 year, early-career profile — not
+ * theoretical or expert-level mastery.
  *
  * Two independent groupings per technology:
  * - `ring`   — which orbit ring it renders in (visual density only)
- * - `category` — Backend / Frontend / Database / DevOps / Engineering, used
- *   by the recruiter-friendly bottom overview and the ring accent colour
+ * - `category` — Backend / Frontend / Database / DevOps / Engineering / AI
+ *   Tools, used by the recruiter-friendly bottom overview and the ring
+ *   accent colour
  */
 
-export const CATEGORIES = ["Backend", "Frontend", "Database", "DevOps", "Engineering"];
+export const CATEGORIES = ["Backend", "Frontend", "Database", "DevOps", "Engineering", "AI Tools"];
 
 export const CATEGORY_INFO = {
   Backend: "Services, security and data access, built with Java and Spring.",
@@ -21,6 +22,7 @@ export const CATEGORY_INFO = {
   Database: "Relational schema design and querying with SQL.",
   DevOps: "Version control, containers and the daily delivery toolchain.",
   Engineering: "The fundamentals everything above is built on.",
+  "AI Tools": "AI-assisted coding tools used daily alongside the stack above.",
 };
 
 export const RINGS = [
@@ -41,6 +43,11 @@ export const RINGS = [
     label: "Engineering",
     items: ["OOP", "Data Structures", "Algorithms", "Debugging", "Agile", "SDLC"],
   },
+  {
+    id: "ai",
+    label: "AI Tools",
+    items: ["ChatGPT", "Claude Code"],
+  },
 ];
 
 /** @typedef {{level:number, levelLabel:string, category:string, focus:string, experience:string[], expertise:string[], usedIn:string[], related:string[]}} TechEntry */
@@ -48,8 +55,8 @@ export const RINGS = [
 /** @type {Record<string, TechEntry>} */
 export const TECHNOLOGIES = {
   Java: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Backend",
     focus: "Core Backend Language",
     experience: ["1+ years building production services in enterprise environments"],
@@ -58,8 +65,8 @@ export const TECHNOLOGIES = {
     related: ["Spring Boot", "Hibernate", "SQL"],
   },
   "Spring Boot": {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 8,
+    levelLabel: "8/10",
     category: "Backend",
     focus: "Enterprise Backend Development",
     experience: ["Built a layered fraud-operations platform using clean architecture principles"],
@@ -68,8 +75,8 @@ export const TECHNOLOGIES = {
     related: ["Java", "Spring Security", "Hibernate", "Docker"],
   },
   Angular: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Frontend",
     focus: "Frontend Development",
     experience: ["Migrated a production platform from Angular 8 to Angular 15"],
@@ -78,8 +85,8 @@ export const TECHNOLOGIES = {
     related: ["TypeScript", "RxJS", "HTML", "CSS"],
   },
   SQL: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Database",
     focus: "Relational Data & Persistence",
     experience: ["Designs and queries relational schemas across production and personal projects"],
@@ -88,8 +95,8 @@ export const TECHNOLOGIES = {
     related: ["PostgreSQL", "MySQL", "Hibernate"],
   },
   "Spring Security": {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 5,
+    levelLabel: "5/10",
     category: "Backend",
     focus: "Application Security",
     experience: ["Implemented JWT authentication and RBAC to protect fraud-review and card-blocking actions"],
@@ -98,8 +105,8 @@ export const TECHNOLOGIES = {
     related: ["Spring Boot", "JWT", "Java"],
   },
   Hibernate: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 7,
+    levelLabel: "7/10",
     category: "Backend",
     focus: "ORM & Persistence",
     experience: ["Maps domain entities to relational storage in Spring Boot services"],
@@ -108,8 +115,8 @@ export const TECHNOLOGIES = {
     related: ["JPA", "Spring Boot", "SQL"],
   },
   JPA: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 7,
+    levelLabel: "7/10",
     category: "Backend",
     focus: "Data Access Layer",
     experience: ["Layers repository access beneath fraud scoring and admin workflows"],
@@ -118,8 +125,8 @@ export const TECHNOLOGIES = {
     related: ["Hibernate", "Spring Boot", "SQL"],
   },
   "REST APIs": {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Backend",
     focus: "Service Integration",
     experience: ["Documents and ships REST endpoints with Swagger/OpenAPI"],
@@ -128,8 +135,8 @@ export const TECHNOLOGIES = {
     related: ["Swagger/OpenAPI", "Spring Boot", "Angular"],
   },
   JWT: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 8,
+    levelLabel: "8/10",
     category: "Backend",
     focus: "Authentication",
     experience: ["Implemented JWT-based authentication for fraud-review and admin actions"],
@@ -138,8 +145,8 @@ export const TECHNOLOGIES = {
     related: ["Spring Security", "Spring Boot"],
   },
   "Swagger/OpenAPI": {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 10,
+    levelLabel: "10/10",
     category: "Backend",
     focus: "API Documentation",
     experience: ["Documents REST contracts for team and client consumption"],
@@ -148,8 +155,8 @@ export const TECHNOLOGIES = {
     related: ["REST APIs", "Spring Boot"],
   },
   TypeScript: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Frontend",
     focus: "Typed Application Logic",
     experience: ["Resolved TypeScript issues while modernizing Angular modules across major versions"],
@@ -158,8 +165,8 @@ export const TECHNOLOGIES = {
     related: ["Angular", "RxJS", "HTML"],
   },
   RxJS: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 7,
+    levelLabel: "7/10",
     category: "Frontend",
     focus: "Reactive Programming",
     experience: ["Built async data flows and loading/error states for third-party API integration"],
@@ -168,8 +175,8 @@ export const TECHNOLOGIES = {
     related: ["Angular", "TypeScript"],
   },
   HTML: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 9,
+    levelLabel: "9/10",
     category: "Frontend",
     focus: "Markup & Structure",
     experience: ["Structures every deployed frontend project, from games to marketing UIs"],
@@ -178,8 +185,8 @@ export const TECHNOLOGIES = {
     related: ["CSS", "Angular"],
   },
   CSS: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 9,
+    levelLabel: "9/10",
     category: "Frontend",
     focus: "Styling & Layout",
     experience: ["Builds responsive layouts across deployed browser projects"],
@@ -188,8 +195,8 @@ export const TECHNOLOGIES = {
     related: ["HTML", "Angular"],
   },
   Git: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 8,
+    levelLabel: "8/10",
     category: "DevOps",
     focus: "Version Control",
     experience: ["Uses branching workflows across every production and personal project"],
@@ -198,8 +205,8 @@ export const TECHNOLOGIES = {
     related: ["GitHub"],
   },
   GitHub: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 8,
+    levelLabel: "8/10",
     category: "DevOps",
     focus: "Collaboration & Hosting",
     experience: ["Hosts and ships every personal project publicly"],
@@ -208,8 +215,8 @@ export const TECHNOLOGIES = {
     related: ["Git"],
   },
   Docker: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 7,
+    levelLabel: "7/10",
     category: "DevOps",
     focus: "Containerization",
     experience: ["Containerized a full-stack platform for consistent local and environment setup"],
@@ -218,8 +225,8 @@ export const TECHNOLOGIES = {
     related: ["Spring Boot", "Maven"],
   },
   Maven: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 7,
+    levelLabel: "7/10",
     category: "DevOps",
     focus: "Build & Dependency Management",
     experience: ["Manages builds and dependencies for Java and Spring Boot services"],
@@ -228,8 +235,8 @@ export const TECHNOLOGIES = {
     related: ["Java", "Spring Boot"],
   },
   Postman: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 10,
+    levelLabel: "10/10",
     category: "DevOps",
     focus: "API Testing",
     experience: ["Validates REST endpoints and auth flows before frontend integration"],
@@ -238,8 +245,8 @@ export const TECHNOLOGIES = {
     related: ["REST APIs"],
   },
   PostgreSQL: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 9,
+    levelLabel: "9/10",
     category: "Database",
     focus: "Relational Database",
     experience: ["Primary datastore for the fraud-operations platform"],
@@ -248,8 +255,8 @@ export const TECHNOLOGIES = {
     related: ["SQL", "Docker"],
   },
   MySQL: {
-    level: 3,
-    levelLabel: "Intermediate",
+    level: 7,
+    levelLabel: "7/10",
     category: "Database",
     focus: "Relational Database",
     experience: ["Relational database experience alongside PostgreSQL"],
@@ -258,8 +265,8 @@ export const TECHNOLOGIES = {
     related: ["SQL", "PostgreSQL"],
   },
   OOP: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Engineering",
     focus: "Software Design Fundamentals",
     experience: ["Foundational to every Java and Angular codebase written"],
@@ -268,8 +275,8 @@ export const TECHNOLOGIES = {
     related: ["Java", "Angular"],
   },
   "Data Structures": {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Engineering",
     focus: "Algorithmic Fundamentals",
     experience: ["Solved 500+ problems across LeetCode and Code 360, including a 100-day streak"],
@@ -278,8 +285,8 @@ export const TECHNOLOGIES = {
     related: ["Algorithms"],
   },
   Algorithms: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Engineering",
     focus: "Problem Solving",
     experience: ["150+ medium-level problems solved as part of 500+ total across platforms"],
@@ -288,8 +295,8 @@ export const TECHNOLOGIES = {
     related: ["Data Structures"],
   },
   Debugging: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Engineering",
     focus: "Production Troubleshooting",
     experience: ["Supports UAT, production troubleshooting and validation testing at Newgen"],
@@ -298,8 +305,8 @@ export const TECHNOLOGIES = {
     related: ["Java", "Angular"],
   },
   Agile: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Engineering",
     focus: "Delivery Process",
     experience: ["Collaborates with client stakeholders and QA through Agile delivery cycles"],
@@ -308,14 +315,34 @@ export const TECHNOLOGIES = {
     related: ["SDLC"],
   },
   SDLC: {
-    level: 4,
-    levelLabel: "Advanced",
+    level: 9,
+    levelLabel: "9/10",
     category: "Engineering",
     focus: "Engineering Process",
     experience: ["Owns features across the full lifecycle from design to deployment"],
     expertise: ["Requirements to Deployment", "Testing Environments", "Release Management"],
     usedIn: ["CoPad — Newgen Software"],
     related: ["Agile", "Debugging"],
+  },
+  ChatGPT: {
+    level: 8,
+    levelLabel: "8/10",
+    category: "AI Tools",
+    focus: "AI-Assisted Problem Solving",
+    experience: ["Uses ChatGPT daily for debugging, code review, and exploring implementation approaches"],
+    expertise: ["Prompt Iteration", "Code Review Assistance", "Research & Documentation Lookup"],
+    usedIn: ["CoPad — Newgen Software", "AI-Powered Credit Card Fraud Detection System"],
+    related: ["Claude Code", "Debugging"],
+  },
+  "Claude Code": {
+    level: 7,
+    levelLabel: "7/10",
+    category: "AI Tools",
+    focus: "AI-Assisted Development Workflow",
+    experience: ["Integrates Claude Code into day-to-day development for refactoring and feature work"],
+    expertise: ["AI Pair Programming", "Codebase Navigation", "Iterative Refactoring"],
+    usedIn: ["Personal & academic projects"],
+    related: ["ChatGPT", "Debugging"],
   },
 };
 

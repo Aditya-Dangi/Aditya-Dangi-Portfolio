@@ -6,6 +6,7 @@ import { CATEGORIES, CATEGORY_INFO, TECHNOLOGIES } from "../../data/techStack";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { usePrefersReducedMotion } from "../../hooks/useMediaQuery";
 import { Badge, Card, Dialog } from "../ui";
+import { RatingDots } from "./RatingDots";
 import { TechDetailContent } from "./TechDetailContent";
 import { proficiencyTone } from "./proficiency";
 
@@ -72,8 +73,8 @@ function TechCard({ name, isHovered, isRelated, isDimmed, reduceMotion, onHover,
           <Badge tone="outline" size="sm">
             {entry.category}
           </Badge>
-          <Badge tone={proficiencyTone(entry.level)} size="sm">
-            {entry.levelLabel}
+          <Badge tone={proficiencyTone(entry.level)} size="sm" aria-label={`Rating ${entry.levelLabel}`}>
+            <RatingDots rating={entry.level} />
           </Badge>
         </span>
         {entry.focus && <span className="techgrid-card__focus">{entry.focus}</span>}

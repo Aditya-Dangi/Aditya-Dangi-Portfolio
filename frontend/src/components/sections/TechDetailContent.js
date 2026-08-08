@@ -5,6 +5,7 @@ import { FallbackSkillIcon, skillIcons } from "../../config/skillIcons";
 import { TECHNOLOGIES } from "../../data/techStack";
 import { Badge } from "../ui";
 import { proficiencyTone } from "./proficiency";
+import { RatingDots } from "./RatingDots";
 
 const TAG_MOTION = {
   hidden: { opacity: 0, y: 6 },
@@ -41,8 +42,8 @@ export function TechDetailContent({ name, onSelectRelated }) {
             <Badge tone="outline" size="sm">
               {entry.category}
             </Badge>
-            <Badge tone={proficiencyTone(entry.level)} size="sm">
-              {entry.levelLabel}
+            <Badge tone={proficiencyTone(entry.level)} size="sm" aria-label={`Rating ${entry.levelLabel}`}>
+              <RatingDots rating={entry.level} />
             </Badge>
           </div>
           <p className="tech-detail__focus">{entry.focus}</p>

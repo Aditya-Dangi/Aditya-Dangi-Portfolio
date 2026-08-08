@@ -1,5 +1,6 @@
 import {
   SiAngular,
+  SiAnthropic,
   SiCss3,
   SiDocker,
   SiGit,
@@ -9,6 +10,7 @@ import {
   SiIntellijidea,
   SiJavascript,
   SiMysql,
+  SiOpenai,
   SiOpenapiinitiative,
   SiPostgresql,
   SiPostman,
@@ -56,6 +58,8 @@ export const skillIcons = {
   Debugging: TbBug,
   Agile: LuWorkflow,
   SDLC: LuWorkflow,
+  ChatGPT: SiOpenai,
+  "Claude Code": SiAnthropic,
 };
 
 /** Fallback keeps every pill visually balanced, even for new skills. */

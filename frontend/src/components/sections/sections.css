@@ -1115,6 +1115,25 @@
   margin-top: var(--space-2);
 }
 
+/* Static 10-segment rating indicator — no animation, no transitions. */
+.rating-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.rating-dots__pip {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-subtle);
+  flex: none;
+}
+
+.rating-dots__pip.is-filled {
+  background: currentColor;
+}
+
 /* Clamped to two lines and reserving exactly two lines of height, so every
    card resolves to the same height in every category — not just within a
    single grid — regardless of how long the description is. */

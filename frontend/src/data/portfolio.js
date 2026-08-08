@@ -138,37 +138,6 @@ export const projects = [
   },
 ];
 
-export const skills = [
-  {
-    group: "Languages",
-    items: ["Java", "JavaScript", "TypeScript", "SQL"],
-  },
-  {
-    group: "Backend",
-    items: [
-      "Spring Boot",
-      "Spring Security",
-      "Hibernate",
-      "JPA",
-      "REST APIs",
-      "JWT",
-      "Swagger/OpenAPI",
-    ],
-  },
-  {
-    group: "Frontend",
-    items: ["Angular", "RxJS", "Responsive UI", "Component Architecture"],
-  },
-  {
-    group: "Databases & Tools",
-    items: ["PostgreSQL", "MySQL", "Docker", "Maven", "Git", "Postman"],
-  },
-  {
-    group: "Engineering",
-    items: ["OOP", "Data Structures", "Algorithms", "Debugging", "Agile", "SDLC"],
-  },
-];
-
 export const achievements = [
   "Solved 500+ DSA problems across LeetCode and Code 360, including 150+ medium-level problems and a 100-day streak.",
   "Completed Full Stack Web Development and Java Data Structures & Algorithms certifications on Udemy.",

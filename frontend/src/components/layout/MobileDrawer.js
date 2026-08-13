@@ -7,12 +7,11 @@ import {
   FiLinkedin,
   FiMail,
   FiMonitor,
-  FiMoon,
-  FiSun,
   FiX,
 } from "react-icons/fi";
 import { cn } from "../../lib/cn";
 import { scrollToSection } from "../../lib/scroll";
+import { THEME_ACCENT_COLORS } from "../../lib/theme";
 import { usePresence } from "../../hooks/usePresence";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
 import { useLockBodyScroll } from "../../hooks/useLockBodyScroll";
@@ -21,10 +20,16 @@ import { sections } from "../../config/navigation";
 import { profile } from "../../data/portfolio";
 import { Button, IconButton } from "../ui";
 
+/** The six concrete palettes — "System" isn't one of them (it follows the OS
+ * instead of naming a look), so it renders as its own row below, not a 7th
+ * grid cell that would leave the 3-column grid with an orphaned last row. */
 const THEME_CHOICES = [
-  { id: "light", label: "Light", icon: <FiSun /> },
-  { id: "dark", label: "Dark", icon: <FiMoon /> },
-  { id: "system", label: "System", icon: <FiMonitor /> },
+  { id: "light", label: "Light" },
+  { id: "dark", label: "Dark" },
+  { id: "beige", label: "Beige" },
+  { id: "brown", label: "Brown" },
+  { id: "nordic", label: "Nordic" },
+  { id: "contrast", label: "Contrast" },
 ];
 
 /**
@@ -133,10 +138,37 @@ export function MobileDrawer({ open, onClose, activeId }) {
                 )}
                 onClick={() => setPreference(choice.id)}
               >
-                <span aria-hidden="true">{choice.icon}</span>
+                <span aria-hidden="true">
+                  {choice.icon ?? (
+                    <span
+                      className="theme-swatch"
+                      style={{ background: THEME_ACCENT_COLORS[choice.id] }}
+                    />
+                  )}
+                </span>
                 {choice.label}
               </button>
             ))}
+          </div>
+
+          <div
+            className="segmented segmented--single"
+            role="radiogroup"
+            aria-labelledby="drawer-theme-label"
+          >
+            <button
+              type="button"
+              role="radio"
+              aria-checked={preference === "system"}
+              className={cn(
+                "segmented__option",
+                preference === "system" && "is-selected"
+              )}
+              onClick={() => setPreference("system")}
+            >
+              <FiMonitor aria-hidden="true" />
+              System
+            </button>
           </div>
         </div>
 

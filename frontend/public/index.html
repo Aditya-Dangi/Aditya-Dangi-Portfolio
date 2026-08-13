@@ -57,9 +57,23 @@
        */
       (function () {
         try {
+          var metaColors = {
+            light: "#ffffff",
+            dark: "#08090b",
+            beige: "#f3ede2",
+            brown: "#1a120b",
+            nordic: "#0d1520",
+            contrast: "#000000",
+          };
           var stored = window.localStorage.getItem("ad-portfolio-theme");
           var preference =
-            stored === "light" || stored === "dark" || stored === "system"
+            stored === "light" ||
+            stored === "dark" ||
+            stored === "beige" ||
+            stored === "brown" ||
+            stored === "nordic" ||
+            stored === "contrast" ||
+            stored === "system"
               ? stored
               : "system";
           var theme =
@@ -72,7 +86,7 @@
           document.documentElement.setAttribute("data-theme", theme);
           document
             .querySelector('meta[name="theme-color"]')
-            .setAttribute("content", theme === "light" ? "#ffffff" : "#08090b");
+            .setAttribute("content", metaColors[theme] || metaColors.dark);
         } catch (error) {
           document.documentElement.setAttribute("data-theme", "dark");
         }

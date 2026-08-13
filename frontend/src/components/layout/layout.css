@@ -104,7 +104,12 @@
   mix-blend-mode: var(--cursor-glow-blend, normal);
 }
 
-[data-theme="dark"] {
+/* Screen blend keeps the glow luminous against every dark-surfaced theme;
+   the default (normal) blend suits light-surfaced themes as-is. */
+[data-theme="dark"],
+[data-theme="brown"],
+[data-theme="nordic"],
+[data-theme="contrast"] {
   --cursor-glow-blend: screen;
 }
 
@@ -387,43 +392,14 @@
   }
 }
 
-/* --- theme toggle icon cross-fade --- */
-.theme-toggle__icons {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: var(--icon-md);
-  height: var(--icon-md);
-}
-
-.theme-toggle__icon {
-  position: absolute;
-  width: var(--icon-md);
-  height: var(--icon-md);
-  transition: opacity var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-spring);
-}
-
-.theme-toggle__icon--sun {
-  opacity: 0;
-  transform: rotate(calc(-70deg * var(--motion-scale)))
-    scale(calc(1 - 0.4 * var(--motion-scale)));
-}
-
-.theme-toggle__icon--moon {
-  opacity: 1;
-  transform: none;
-}
-
-[data-theme="light"] .theme-toggle__icon--sun {
-  opacity: 1;
-  transform: none;
-}
-
-[data-theme="light"] .theme-toggle__icon--moon {
-  opacity: 0;
-  transform: rotate(calc(70deg * var(--motion-scale)))
-    scale(calc(1 - 0.4 * var(--motion-scale)));
+/* --- small colour dot shown next to each concrete theme in a picker list,
+   e.g. the theme menu and the mobile drawer's theme choices --- */
+.theme-swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
 }
 
 /* -------------------------------------------------------------------------
@@ -746,6 +722,13 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: var(--surface-2);
+}
+
+/* A single full-width row, used for options (like "System") that don't
+   belong in the fixed 3-column grid above. */
+.segmented--single {
+  grid-template-columns: 1fr;
+  margin-top: var(--space-2);
 }
 
 .segmented__option {

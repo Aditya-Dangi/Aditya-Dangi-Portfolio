@@ -1,25 +1,38 @@
 import React from "react";
-import { FiMonitor, FiMoon, FiSun } from "react-icons/fi";
+import { FiMonitor } from "react-icons/fi";
+import { FaPalette } from "react-icons/fa";
+import { THEME_ACCENT_COLORS } from "../../lib/theme";
 import { IconButton, Menu, Tooltip } from "../ui";
 import { useTheme } from "../../theme/ThemeProvider";
 
 const OPTIONS = [
-  { id: "light", label: "Light", icon: <FiSun /> },
-  { id: "dark", label: "Dark", icon: <FiMoon /> },
+  { id: "light", label: "Light" },
+  { id: "dark", label: "Dark" },
+  { id: "beige", label: "Beige" },
+  { id: "brown", label: "Brown" },
+  { id: "nordic", label: "Nordic" },
+  { id: "contrast", label: "Contrast" },
   { id: "system", label: "System", icon: <FiMonitor /> },
 ];
 
+/** A small dot in the theme's own accent colour — five concrete palettes can't each get a bespoke icon, but a swatch shows what picking one actually looks like. */
+function themeIcon(option) {
+  if (option.icon) return option.icon;
+  return <span className="theme-swatch" style={{ background: THEME_ACCENT_COLORS[option.id] }} />;
+}
+
 /**
- * Theme control.
- *
- * A click toggles light/dark immediately (the common case); the menu exposes
- * all three preferences including following the operating system.
+ * Theme control. Six concrete palettes plus "follow system" — a single
+ * trigger icon can't represent seven states (sun/moon stopped meaning
+ * anything once themes stopped being binary), so it's a plain, static
+ * "appearance" glyph and the click always opens the menu.
  */
 export function ThemeToggle({ align = "end" }) {
   const { preference, theme, setPreference } = useTheme();
 
   const items = OPTIONS.map((option) => ({
     ...option,
+    icon: themeIcon(option),
     selected: preference === option.id,
     onSelect: () => setPreference(option.id),
   }));
@@ -37,11 +50,7 @@ export function ThemeToggle({ align = "end" }) {
             })`}
             className="theme-toggle"
           >
-            {/* Both icons are mounted and cross-fade, so the swap animates. */}
-            <span className="theme-toggle__icons" aria-hidden="true">
-              <FiSun className="theme-toggle__icon theme-toggle__icon--sun" />
-              <FiMoon className="theme-toggle__icon theme-toggle__icon--moon" />
-            </span>
+            <FaPalette aria-hidden="true" />
           </IconButton>
         </Tooltip>
       }

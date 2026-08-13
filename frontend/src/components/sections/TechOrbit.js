@@ -7,8 +7,16 @@ import { usePrefersReducedMotion } from "../../hooks/useMediaQuery";
 import { Dialog } from "../ui";
 import { TechDetailContent } from "./TechDetailContent";
 
-/** Ring radius as a percentage of the stage's inline size (`cqi`), outer rings larger. */
-const RADIUS_PERCENT = [17, 25, 33, 40, 45];
+/**
+ * Ring radius as a percentage of the stage's inline size (`cqi`), outer
+ * rings larger. Gaps between consecutive rings must stay comfortably above
+ * the node's max diameter (see `.techorbit__node` in sections.css, 6cqi) —
+ * nothing prevents two different rings' nodes from landing at the same
+ * angle, so a gap smaller than a node causes real overlap. The outermost
+ * value also needs enough margin to 50 (the stage edge) to clear the node's
+ * radius, or it gets clipped by the stage's `overflow: hidden`.
+ */
+const RADIUS_PERCENT = [14, 21, 28, 35, 42];
 
 /** Slow, alternating per-ring rotation so the orbit visibly moves. */
 const RING_DURATION_S = [46, 58, 70, 82, 94];
@@ -49,7 +57,11 @@ const NODE_MOTION = {
  * Hovering (or focusing) a node pauses the whole orbit's rotation and draws
  * connector lines to its `related` nodes, using their actual rendered
  * positions — so the lines line up regardless of where rotation happened to
- * stop.
+ * stop. Clicking/tapping a node opens its detail dialog (`activeName`) and,
+ * while that's open, shows the same highlight/lines — `activeName` is the
+ * single source of truth for "selected", so its existing open/close
+ * lifecycle (Escape, the close button, clicking the scrim) is what clears
+ * the highlight too. No separate "pinned" state, no extra listeners.
  */
 export function TechOrbit() {
   const reduceMotion = usePrefersReducedMotion();
@@ -60,24 +72,28 @@ export function TechOrbit() {
   const stageRef = useRef(null);
   const nodeRefs = useRef({});
 
+  // A live hover always wins; once the pointer leaves, whatever dialog is
+  // open (if any) reappears underneath it.
+  const displayedName = hovered ?? activeName;
+
   const rings = useMemo(
     () => RINGS.map((ring, index) => ({ ...ring, nodes: ringNodes(ring, index) })),
     []
   );
 
   const relatedSet = useMemo(() => {
-    if (!hovered) return null;
-    return new Set(TECHNOLOGIES[hovered]?.related ?? []);
-  }, [hovered]);
+    if (!displayedName) return null;
+    return new Set(TECHNOLOGIES[displayedName]?.related ?? []);
+  }, [displayedName]);
 
   useLayoutEffect(() => {
-    if (!hovered) {
+    if (!displayedName) {
       setLinks([]);
       return;
     }
 
     const stage = stageRef.current;
-    const originEl = nodeRefs.current[hovered];
+    const originEl = nodeRefs.current[displayedName];
     if (!stage || !originEl) return;
 
     const stageRect = stage.getBoundingClientRect();
@@ -90,20 +106,30 @@ export function TechOrbit() {
     };
 
     const origin = point(originEl);
-    const related = TECHNOLOGIES[hovered]?.related ?? [];
+    const related = TECHNOLOGIES[displayedName]?.related ?? [];
     const nextLinks = related
       .map((name) => nodeRefs.current[name])
       .filter(Boolean)
       .map((el) => ({ origin, target: point(el) }));
 
     setLinks(nextLinks);
-  }, [hovered]);
+  }, [displayedName]);
 
   let globalIndex = 0;
 
   return (
     <div className="techorbit">
-      <div className="techorbit__stage" ref={stageRef}>
+      <div
+        className="techorbit__stage"
+        ref={stageRef}
+        /* Safety net: per-node onPointerLeave can miss a clean handoff (a fast
+           pointer exit past a node's small hit area, or the node shifting out
+           from under a stationary cursor when rotation resumes) and leave
+           `hovered` stuck. Clearing here too guarantees it resets whenever the
+           pointer actually leaves the stage, regardless of what happened
+           between nodes. */
+        onPointerLeave={() => setHovered(null)}
+      >
         <div className="techorbit__hub" aria-hidden="true">
           <span className="techorbit__hub-count">{Object.keys(TECHNOLOGIES).length}</span>
           <span className="techorbit__hub-label">Technologies</span>
@@ -148,9 +174,9 @@ export function TechOrbit() {
                 const delayIndex = globalIndex++;
                 const entry = TECHNOLOGIES[node.name];
                 const Icon = skillIcons[node.name] ?? FallbackSkillIcon;
-                const isHovered = hovered === node.name;
+                const isActive = displayedName === node.name;
                 const isRelated = !!relatedSet?.has(node.name);
-                const isDimmed = !!relatedSet && !isHovered && !isRelated;
+                const isDimmed = !!relatedSet && !isActive && !isRelated;
 
                 return (
                   <motion.button
@@ -168,13 +194,26 @@ export function TechOrbit() {
                     whileTap={reduceMotion ? undefined : { scale: 0.95 }}
                     className={cn(
                       "techorbit__node",
-                      isHovered && "is-hovered",
+                      isActive && "is-hovered",
                       isRelated && "is-related",
                       isDimmed && "is-dimmed"
                     )}
-                    style={{ left: `${node.left}cqi`, top: `${node.top}cqi` }}
-                    onPointerEnter={() => setHovered(node.name)}
-                    onPointerLeave={() => setHovered(null)}
+                    /* x/y (not a CSS `transform` class) because framer-motion owns the whole
+                       `transform` property once it animates `scale` — a stylesheet
+                       `transform: translate(-50%, -50%)` gets silently overwritten
+                       otherwise, leaving every node off-center by half its own size. */
+                    style={{ left: `${node.left}cqi`, top: `${node.top}cqi`, x: "-50%", y: "-50%" }}
+                    /* Touch's pointerenter/leave firing is unreliable (often no
+                       leave event at all once the finger lifts), so touch skips
+                       the live-hover preview entirely and relies only on
+                       onClick opening the dialog below. Mouse keeps the normal
+                       hover preview. */
+                    onPointerEnter={(event) => {
+                      if (event.pointerType !== "touch") setHovered(node.name);
+                    }}
+                    onPointerLeave={(event) => {
+                      if (event.pointerType !== "touch") setHovered(null);
+                    }}
                     onFocus={() => setHovered(node.name)}
                     onBlur={() => setHovered(null)}
                     onClick={() => setActiveName(node.name)}
@@ -204,9 +243,9 @@ export function TechOrbit() {
         always settles on the current technology.
       */}
       <div className="techorbit__caption" aria-live="polite">
-        {hovered ? (
-          <p key={hovered} className="techorbit__caption-text">
-            <strong>{hovered}</strong> — {TECHNOLOGIES[hovered].focus}
+        {displayedName ? (
+          <p key={displayedName} className="techorbit__caption-text">
+            <strong>{displayedName}</strong> — {TECHNOLOGIES[displayedName].focus}
           </p>
         ) : (
           <p className="techorbit__caption-hint">

@@ -7,11 +7,26 @@
 
 export const THEME_STORAGE_KEY = "ad-portfolio-theme";
 
-/** @typedef {"light" | "dark" | "system"} ThemePreference */
-/** @typedef {"light" | "dark"} ResolvedTheme */
+/** @typedef {"light" | "dark" | "beige" | "brown" | "nordic" | "contrast" | "system"} ThemePreference */
+/** @typedef {"light" | "dark" | "beige" | "brown" | "nordic" | "contrast"} ResolvedTheme */
 
 /** @type {ThemePreference[]} */
-export const THEME_OPTIONS = ["light", "dark", "system"];
+export const THEME_OPTIONS = ["light", "dark", "beige", "brown", "nordic", "contrast", "system"];
+
+/**
+ * One representative colour per concrete theme, so theme-picker UIs (the
+ * toggle menu, the mobile drawer, the command palette) can render a swatch
+ * without each duplicating the palette's hex values from tokens.css.
+ * @type {Record<ResolvedTheme, string>}
+ */
+export const THEME_ACCENT_COLORS = {
+  light: "#4f46e5",
+  dark: "#7c86f5",
+  beige: "#97652f",
+  brown: "#d99a4e",
+  nordic: "#5eb3d6",
+  contrast: "#2f6bff",
+};
 
 /**
  * @param {unknown} value
@@ -57,6 +72,16 @@ export function resolveTheme(preference) {
   return preference === "system" ? getSystemTheme() : preference;
 }
 
+/** The theme's own --bg-canvas value, for the mobile chrome meta tag below. */
+const META_THEME_COLOR = {
+  light: "#ffffff",
+  dark: "#08090b",
+  beige: "#f3ede2",
+  brown: "#1a120b",
+  nordic: "#0d1520",
+  contrast: "#000000",
+};
+
 /**
  * Apply a resolved theme to the document. Also syncs the browser chrome
  * colour so mobile address bars match the surface behind them.
@@ -67,5 +92,5 @@ export function applyTheme(theme) {
   root.setAttribute("data-theme", theme);
 
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", theme === "light" ? "#ffffff" : "#08090b");
+  if (meta) meta.setAttribute("content", META_THEME_COLOR[theme] ?? META_THEME_COLOR.dark);
 }

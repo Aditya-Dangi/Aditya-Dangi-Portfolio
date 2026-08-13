@@ -247,6 +247,256 @@
 }
 
 /* =========================================================================
+   Beige — light, warm neutral. Same structure as the light theme, shifted
+   from cool gray to warm tan/beige with an ochre accent.
+   ========================================================================= */
+[data-theme="beige"] {
+  color-scheme: light;
+
+  --bg-canvas: #f3ede2;
+  --bg-subtle: #efe7d8;
+  --surface-1: #f8f3e9;
+  --surface-2: #ece4d3;
+  --surface-3: #e2d7c0;
+  --surface-inset: #ece2cd;
+  --surface-hover: rgba(47, 42, 31, 0.035);
+  --surface-active: rgba(47, 42, 31, 0.06);
+
+  --scrim: rgba(38, 33, 22, 0.35);
+  --glass: rgba(248, 243, 233, 0.78);
+
+  --text-primary: #2f2a1f;
+  --text-secondary: #5c5340;
+  --text-tertiary: #766c55;
+  --text-inverted: #f8f3e9;
+  --text-on-accent: #ffffff;
+
+  --border-subtle: rgba(47, 42, 31, 0.07);
+  --border: rgba(47, 42, 31, 0.12);
+  --border-strong: rgba(47, 42, 31, 0.21);
+
+  --accent: #97652f;
+  --accent-hover: #855a29;
+  --accent-active: #714a22;
+  --accent-soft: rgba(151, 101, 47, 0.1);
+  --accent-soft-hover: rgba(151, 101, 47, 0.16);
+  --accent-border: rgba(151, 101, 47, 0.3);
+  --accent-glow: rgba(151, 101, 47, 0.24);
+
+  --amber: #8a6a1f;
+  --amber-soft: rgba(138, 106, 31, 0.12);
+  --emerald: #4f7d54;
+  --emerald-soft: rgba(79, 125, 84, 0.12);
+  --rose: #a24a42;
+  --rose-soft: rgba(162, 74, 66, 0.12);
+
+  --solid-bg: #2f2a1f;
+  --solid-bg-hover: #423a2a;
+  --solid-text: #f8f3e9;
+
+  --shadow-xs: 0 1px 2px rgba(47, 42, 31, 0.08);
+  --shadow-sm: 0 1px 3px rgba(47, 42, 31, 0.1), 0 1px 2px rgba(47, 42, 31, 0.05);
+  --shadow-md: 0 6px 16px -4px rgba(47, 42, 31, 0.13), 0 2px 6px rgba(47, 42, 31, 0.06);
+  --shadow-lg: 0 18px 40px -12px rgba(47, 42, 31, 0.18), 0 4px 12px rgba(47, 42, 31, 0.06);
+  --shadow-xl: 0 28px 70px -18px rgba(47, 42, 31, 0.24);
+  --shadow-raised: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  --ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  --grid-line: rgba(47, 42, 31, 0.045);
+  --aurora-1: rgba(151, 101, 47, 0.12);
+  --aurora-2: rgba(138, 106, 31, 0.07);
+}
+
+/* =========================================================================
+   Brown — dark, espresso-toned. Same structure as the dark theme, shifted
+   from neutral gray-black to warm coffee-brown with a caramel accent.
+   ========================================================================= */
+[data-theme="brown"] {
+  color-scheme: dark;
+
+  --bg-canvas: #1a120b;
+  --bg-subtle: #1d140c;
+  --surface-1: #241a10;
+  --surface-2: #2c2014;
+  --surface-3: #362818;
+  --surface-inset: #1c130c;
+  --surface-hover: rgba(255, 230, 216, 0.045);
+  --surface-active: rgba(255, 230, 216, 0.075);
+
+  --scrim: rgba(10, 7, 4, 0.62);
+  --glass: rgba(26, 18, 11, 0.72);
+
+  --text-primary: #f2e6d8;
+  --text-secondary: #c2a98d;
+  --text-tertiary: #a08669;
+  --text-inverted: #1a120b;
+  --text-on-accent: #1a120b;
+
+  --border-subtle: rgba(255, 230, 216, 0.07);
+  --border: rgba(255, 230, 216, 0.12);
+  --border-strong: rgba(255, 230, 216, 0.19);
+
+  --accent: #d99a4e;
+  --accent-hover: #e5aa63;
+  --accent-active: #c78a3f;
+  --accent-soft: rgba(217, 154, 78, 0.16);
+  --accent-soft-hover: rgba(217, 154, 78, 0.24);
+  --accent-border: rgba(217, 154, 78, 0.35);
+  --accent-glow: rgba(217, 154, 78, 0.38);
+
+  --amber: #e0ac5c;
+  --amber-soft: rgba(224, 172, 92, 0.15);
+  --emerald: #6faa76;
+  --emerald-soft: rgba(111, 170, 118, 0.15);
+  --rose: #d6786f;
+  --rose-soft: rgba(214, 120, 111, 0.15);
+
+  --solid-bg: #f2e6d8;
+  --solid-bg-hover: #ffffff;
+  --solid-text: #1a120b;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px -6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 32px 80px -20px rgba(0, 0, 0, 0.8);
+  --shadow-raised: inset 0 1px 0 rgba(255, 230, 216, 0.06);
+
+  --ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  --grid-line: rgba(255, 230, 216, 0.03);
+  --aurora-1: rgba(217, 154, 78, 0.18);
+  --aurora-2: rgba(111, 170, 118, 0.08);
+}
+
+/* =========================================================================
+   Nordic — dark, cool blue-slate. Same structure as the dark theme, shifted
+   from neutral gray-black to a deep blue-slate with an icy accent.
+   ========================================================================= */
+[data-theme="nordic"] {
+  color-scheme: dark;
+
+  --bg-canvas: #0d1520;
+  --bg-subtle: #101a26;
+  --surface-1: #16212f;
+  --surface-2: #1c2836;
+  --surface-3: #243342;
+  --surface-inset: #101a26;
+  --surface-hover: rgba(230, 237, 245, 0.04);
+  --surface-active: rgba(230, 237, 245, 0.07);
+
+  --scrim: rgba(5, 9, 14, 0.62);
+  --glass: rgba(13, 21, 32, 0.72);
+
+  --text-primary: #e6edf5;
+  --text-secondary: #93a7bd;
+  --text-tertiary: #71879e;
+  --text-inverted: #0a0f16;
+  --text-on-accent: #0a0f16;
+
+  --border-subtle: rgba(230, 237, 245, 0.06);
+  --border: rgba(230, 237, 245, 0.1);
+  --border-strong: rgba(230, 237, 245, 0.17);
+
+  --accent: #5eb3d6;
+  --accent-hover: #74c1e1;
+  --accent-active: #4aa0c4;
+  --accent-soft: rgba(94, 179, 214, 0.14);
+  --accent-soft-hover: rgba(94, 179, 214, 0.22);
+  --accent-border: rgba(94, 179, 214, 0.32);
+  --accent-glow: rgba(94, 179, 214, 0.35);
+
+  --amber: #d6a35e;
+  --amber-soft: rgba(214, 163, 94, 0.14);
+  --emerald: #5ed6ab;
+  --emerald-soft: rgba(94, 214, 171, 0.14);
+  --rose: #d67a9e;
+  --rose-soft: rgba(214, 122, 158, 0.14);
+
+  --solid-bg: #e6edf5;
+  --solid-bg-hover: #ffffff;
+  --solid-text: #0a0f16;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px -6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 32px 80px -20px rgba(0, 0, 0, 0.8);
+  --shadow-raised: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  --ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  --grid-line: rgba(230, 237, 245, 0.03);
+  --aurora-1: rgba(94, 179, 214, 0.18);
+  --aurora-2: rgba(214, 163, 94, 0.09);
+}
+
+/* =========================================================================
+   Contrast — near-black/white, vivid accent, thick borders. Not a mood
+   theme like the others — built for maximum legibility, an explicit,
+   opt-in version of what `prefers-contrast: more` nudges the other themes
+   toward below.
+   ========================================================================= */
+[data-theme="contrast"] {
+  color-scheme: dark;
+
+  --bg-canvas: #000000;
+  --bg-subtle: #050505;
+  --surface-1: #0d0d0d;
+  --surface-2: #1a1a1a;
+  --surface-3: #262626;
+  --surface-inset: #080808;
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --surface-active: rgba(255, 255, 255, 0.1);
+
+  --scrim: rgba(0, 0, 0, 0.75);
+  --glass: rgba(0, 0, 0, 0.85);
+
+  --text-primary: #ffffff;
+  --text-secondary: #d9d9d9;
+  --text-tertiary: #b8b8b8;
+  --text-inverted: #000000;
+  --text-on-accent: #ffffff;
+
+  --border-subtle: rgba(255, 255, 255, 0.25);
+  --border: rgba(255, 255, 255, 0.4);
+  --border-strong: rgba(255, 255, 255, 0.6);
+
+  --accent: #2f6bff;
+  --accent-hover: #5488ff;
+  --accent-active: #1f52e0;
+  --accent-soft: rgba(47, 107, 255, 0.2);
+  --accent-soft-hover: rgba(47, 107, 255, 0.3);
+  --accent-border: rgba(47, 107, 255, 0.55);
+  --accent-glow: rgba(47, 107, 255, 0.5);
+
+  --amber: #ff9d00;
+  --amber-soft: rgba(255, 157, 0, 0.18);
+  --emerald: #00e676;
+  --emerald-soft: rgba(0, 230, 118, 0.18);
+  --rose: #ff5c8a;
+  --rose-soft: rgba(255, 92, 138, 0.18);
+
+  --solid-bg: #ffffff;
+  --solid-bg-hover: #f0f0f0;
+  --solid-text: #000000;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.8);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.75);
+  --shadow-md: 0 8px 24px -6px rgba(0, 0, 0, 0.85);
+  --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.9);
+  --shadow-xl: 0 32px 80px -20px rgba(0, 0, 0, 0.95);
+  --shadow-raised: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  --ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  --grid-line: rgba(255, 255, 255, 0.08);
+  --aurora-1: rgba(47, 107, 255, 0.16);
+  --aurora-2: rgba(0, 230, 118, 0.08);
+}
+
+/* =========================================================================
    Reduced motion — one switch that neutralises the motion scale used by
    every animation, plus a hard stop for anything long-running.
    ========================================================================= */

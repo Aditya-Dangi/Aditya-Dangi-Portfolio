@@ -11,7 +11,6 @@ import {
   applyTheme,
   getSystemTheme,
   readStoredPreference,
-  resolveTheme,
   storePreference,
 } from "../lib/theme";
 
@@ -20,7 +19,6 @@ import {
  * @property {import("../lib/theme").ThemePreference} preference  what the user chose
  * @property {import("../lib/theme").ResolvedTheme} theme         what is actually rendered
  * @property {(next: import("../lib/theme").ThemePreference) => void} setPreference
- * @property {() => void} toggleTheme
  */
 
 const ThemeContext = createContext(/** @type {ThemeContextValue | null} */ (null));
@@ -83,19 +81,9 @@ export function ThemeProvider({ children }) {
     storePreference(next);
   }, []);
 
-  /** Flip between explicit light and dark, leaving "system" behind. */
-  const toggleTheme = useCallback(() => {
-    setPreferenceState((current) => {
-      const resolved = resolveTheme(current);
-      const next = resolved === "dark" ? "light" : "dark";
-      storePreference(next);
-      return next;
-    });
-  }, []);
-
   const value = useMemo(
-    () => ({ preference, theme, setPreference, toggleTheme }),
-    [preference, theme, setPreference, toggleTheme]
+    () => ({ preference, theme, setPreference }),
+    [preference, theme, setPreference]
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

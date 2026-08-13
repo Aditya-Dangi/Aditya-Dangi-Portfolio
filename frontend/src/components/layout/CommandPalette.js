@@ -23,6 +23,7 @@ import {
 } from "react-icons/fi";
 import { cn } from "../../lib/cn";
 import { scrollToSection } from "../../lib/scroll";
+import { THEME_ACCENT_COLORS } from "../../lib/theme";
 import { usePresence } from "../../hooks/usePresence";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
 import { useLockBodyScroll } from "../../hooks/useLockBodyScroll";
@@ -195,6 +196,38 @@ export function CommandPalette({ open, onClose }) {
         icon: <FiMoon />,
         keywords: "theme dark night appearance",
         perform: () => setPreference("dark"),
+      },
+      {
+        id: "theme-beige",
+        group: "Preferences",
+        label: "Switch to beige theme",
+        icon: <span className="theme-swatch" style={{ background: THEME_ACCENT_COLORS.beige }} />,
+        keywords: "theme beige tan warm light appearance",
+        perform: () => setPreference("beige"),
+      },
+      {
+        id: "theme-brown",
+        group: "Preferences",
+        label: "Switch to brown theme",
+        icon: <span className="theme-swatch" style={{ background: THEME_ACCENT_COLORS.brown }} />,
+        keywords: "theme brown espresso coffee dark appearance",
+        perform: () => setPreference("brown"),
+      },
+      {
+        id: "theme-nordic",
+        group: "Preferences",
+        label: "Switch to nordic theme",
+        icon: <span className="theme-swatch" style={{ background: THEME_ACCENT_COLORS.nordic }} />,
+        keywords: "theme nordic blue slate dark appearance",
+        perform: () => setPreference("nordic"),
+      },
+      {
+        id: "theme-contrast",
+        group: "Preferences",
+        label: "Switch to contrast theme",
+        icon: <span className="theme-swatch" style={{ background: THEME_ACCENT_COLORS.contrast }} />,
+        keywords: "theme contrast black high vivid accessibility appearance",
+        perform: () => setPreference("contrast"),
       },
       {
         id: "theme-system",

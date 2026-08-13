@@ -59,6 +59,7 @@ export function Contact() {
               as="a"
               variant="accent"
               size="lg"
+              className="contact__email-btn"
               href={`mailto:${profile.email}`}
             >
               <FiMail aria-hidden="true" />

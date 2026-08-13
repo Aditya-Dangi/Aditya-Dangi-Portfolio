@@ -39,11 +39,12 @@ export const experience = [
     context:
       "Engineering CoPad, CitiBank's enterprise banking platform used by global settlement operations.",
     impact: [
-      "Delivered production-ready features across 10 releases for settlement operations and trade-review workflows.",
-      "Modernized legacy Angular modules from Angular 8 to Angular 15, resolving issues across data tables, PDF exports, TypeScript, and dependency upgrades.",
-      "Designed dashboard workflows for business-day ageing, advanced filtering, and search to help Citi EMEA teams review settlement records faster.",
-      "Built an Excel upload flow that parses trade ID spreadsheets, queries matching records through existing APIs, and automates bulk export generation.",
-      "Supported UAT, production troubleshooting, validation testing, and deployments across multiple testing environments.",
+      "Led Angular frontend development for CoPad, shipping features across 10 production releases for EMEA, APAC, and NAM operations teams.",
+      "Migrated legacy modules from Angular 8 to Angular 15, resolving compatibility issues across Angular DataTables, jsPDF, TypeScript, and other legacy dependencies.",
+      "Built 20+ Java/Spring Boot REST endpoints for CoPad, including a configurable Excel-export API with 20+ selectable columns, a scheduler fix, and validation logic.",
+      "Delivered settlement dashboard features — business-day ageing, advanced filtering, and trade search — used by 50+ CitiBank users to track failed, partially settled, and pending trades.",
+      "Replaced manual row selection across up to 2,500 trade records with an automated Excel-upload workflow that matches trade IDs to database records and auto-generates reports.",
+      "Partnered with CitiBank stakeholders on requirements and production issue triage, validating releases through UAT across three environments (IST, UAT, Production) in Scrum-based Agile sprints.",
     ],
   },
 ];
@@ -59,8 +60,9 @@ export const projects = [
       "A full-stack fraud operations platform that combines rule-based detection with AI-assisted risk recommendations for administrative review teams.",
     outcomes: [
       "Separated fraud scoring, alert management, card blocking, and admin workflows using layered architecture and clean code principles.",
-      "Implemented JWT authentication and RBAC with Spring Security to protect fraud-review and card-blocking actions.",
-      "Documented REST APIs with Swagger/OpenAPI and containerized the app for consistent local and environment setup.",
+      "Secured the platform with Spring Security, JWT authentication, and a 3-tier RBAC hierarchy (Customer, Admin, Super Admin), plus a 4-stage admin-access approval workflow.",
+      "Integrated Google Gemini AI to classify transactions flagged by a rule-based engine — amount, geography, and velocity thresholds — into four risk tiers (Low/Medium/High/Critical) with explanations and recommendations.",
+      "Built a fraud alert pipeline with four review states that auto-blocks the linked card on rejection, backed by an admin dashboard with email notifications, Swagger/OpenAPI docs, and Docker containerization.",
     ],
     links: [
       {
@@ -70,16 +72,17 @@ export const projects = [
     ],
   },
   {
-    title: "Fitness Exercises Application",
+    title: "FitApp",
     year: "2025",
     type: "Angular application",
-    stack: ["Angular 15", "RxJS", "RapidAPI", "TypeScript"],
+    stack: ["Angular 15", "RxJS", "RapidAPI", "TypeScript", "Netlify CI"],
     image: "fitness-exercises-app.jpg",
     description:
-      "A responsive exercise discovery app with real-time search, category filtering, reusable components, and resilient API states.",
+      "A full-featured exercise-discovery web app built in Angular 15, migrated from a legacy React codebase to a modern standalone-component architecture with lazy-loaded routes.",
     outcomes: [
-      "Integrated third-party exercise data across 100+ workout categories with routing, shared services, and RxJS-driven async flows.",
-      "Added loading and error states to keep the interface responsive and maintainable under unreliable API responses.",
+      "Integrated ExerciseDB and YouTube Search via RapidAPI through a reactive, RxJS-driven service layer for real-time search and filtering by body part, target muscle, and equipment.",
+      "Built a reusable CSS custom-property design system with dark mode, full mobile responsiveness, and a custom navigation drawer.",
+      "Focused on accessibility (keyboard focus states, ARIA attributes, skip links) and performance (route-level code splitting, lazy image loading), deployed via Netlify with CI-driven builds.",
     ],
     links: [
       {
@@ -89,15 +92,17 @@ export const projects = [
     ],
   },
   {
-    title: "Interactive Games",
+    title: "Games 4 Fun",
     year: "2024",
-    type: "Deployed frontend",
-    stack: ["JavaScript", "HTML", "CSS", "Responsive UI"],
+    type: "Angular application",
+    stack: ["Angular", "Signals", "RxJS", "GitHub Actions"],
     image: "game.jpg",
     description:
-      "A polished browser-based collection featuring Hangman, Bubble Game, and Stone Paper Scissors with interactive UI states.",
+      "A gaming platform migrated from a legacy static HTML/CSS/JS site into modern Angular, expanded from 3 basic games to 7 fully playable titles: Hangman, Bubble Game, Stone Paper Scissors, Sudoku, Memory Matcher, Snake & Ladder, and Tic-Tac-Toe.",
     outcomes: [
-      "Built multiple game flows with responsive layouts, browser event handling, and state-driven interactions.",
+      "Built with standalone components, signal-based state management, and RxJS for reactive timers and async flows.",
+      "Designed a cohesive visual system with custom SVG game icons, category filtering, and difficulty/play-time metadata, with lazy-loaded routing for performance.",
+      "Implemented an AI opponent for Tic-Tac-Toe and a Sudoku puzzle generator with validation, deployed via a CI/CD pipeline to both Netlify and GitHub Pages through GitHub Actions.",
     ],
     links: [
       { label: "Live Demo", href: "https://aditya-dangi.github.io/Games/" },
@@ -105,15 +110,17 @@ export const projects = [
     ],
   },
   {
-    title: "Wordle Clone",
+    title: "Wordle",
     year: "2024",
-    type: "Deployed frontend",
-    stack: ["JavaScript ES6+", "HTML", "CSS"],
+    type: "Angular application",
+    stack: ["Angular", "Signals", "CSS 3D", "localStorage"],
     image: "wordle-clone.jpg",
     description:
-      "A responsive Wordle-style game with added features and maintainable JavaScript logic.",
+      "A full-stack-feeling Wordle platform built solo, migrated from vanilla JavaScript to a signals-based, standalone-component Angular architecture with zero backend — everything runs client-side via localStorage.",
     outcomes: [
-      "Implemented keyboard input, validation feedback, and replayable game state using modern JavaScript patterns.",
+      "Features 13 game modes (Classic, Blitz, Survival, Marathon, Reverse Mode, and multi-board variants) with full progression: XP, levels, streaks, achievements, and daily missions.",
+      "Supports 5 themes and accessibility options including color-blind mode and reduced motion.",
+      "Redesigned the UI into a dark, HUD-style aesthetic using CSS-only 3D (no WebGL) — pointer-reactive tilt cards, a rotating hero word-core, and procedural mode icons. Deployed on Netlify with SPA routing.",
     ],
     links: [
       { label: "Live Demo", href: "https://aditya-dangi.github.io/Wordle-Clone/" },
@@ -121,15 +128,17 @@ export const projects = [
     ],
   },
   {
-    title: "Fyle Project",
+    title: "Fyle Digital Agency",
     year: "2024",
-    type: "Deployed UI assignment",
-    stack: ["HTML5", "CSS", "JavaScript", "jQuery", "Bootstrap"],
+    type: "Deployed frontend",
+    stack: ["HTML5", "CSS3", "JavaScript", "jQuery", "Swiper.js"],
     image: "fyle-project.jpg",
     description:
-      "A dynamic marketing-style interface with navigation interactions and carousel functionality.",
+      "A responsive marketing landing page for a digital agency, rebuilt from a basic static template into a modern, premium web experience.",
     outcomes: [
-      "Integrated Swiper.js and Bootstrap patterns to deliver a responsive, production-like frontend assignment.",
+      "Built a sticky glassmorphic navigation bar, an animated hero section with gradient accents, an interactive service carousel, and hover-responsive project/testimonial cards.",
+      "Implemented scroll-triggered reveal animations, staggered grid transitions, and full mobile-first responsiveness, alongside a smooth animated contact-form modal.",
+      "Respected accessibility standards including prefers-reduced-motion and touch-device interaction handling, with lightweight, dependency-free CSS animations for performance.",
     ],
     links: [
       { label: "Live Demo", href: "https://fyle-assignment-project.netlify.app" },

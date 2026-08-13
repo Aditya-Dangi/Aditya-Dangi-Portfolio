@@ -949,8 +949,20 @@
 }
 
 .tabs__tab {
+  /* Equal width so it matches `.tabs__indicator`'s `100% / tab-count` math —
+     that indicator can't measure each button's actual (content-based)
+     width, so the buttons have to be uniform instead or the sliding
+     highlight drifts off whichever tab has a shorter label. `.tabs__list`
+     is shrink-to-fit (inline-flex, no defined width), so `flex-grow` has no
+     free space to redistribute — a shared `min-width` is what actually
+     equalizes them here, sized to the longest label ("Overview"). */
+  flex: 0 0 auto;
+  min-width: 5.25rem;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 1.9rem;
   padding: 0 var(--space-3);
   border-radius: var(--radius-md);
